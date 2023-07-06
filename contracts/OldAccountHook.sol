@@ -37,13 +37,13 @@ contract OldAccount is BaseHook, Ownable {
         emit UpdateAxiomQueryAddress(_axiomQueryAddress);
     }
 
-    modifier onlyPermitOldAccounts(address sender) {
+    modifier onlyPermitOldAccounts() {
         require(
-            uint256(birthBlocks[sender]) != 0,
+            uint256(birthBlocks[tx.origin]) != 0,
             "you are not even born, bruh"
         );
         require(
-            block.number - uint256(birthBlocks[sender]) >= ageThreshold,
+            block.number - uint256(birthBlocks[tx.origin]) >= ageThreshold,
             "you not old enough, yo"
         );
         _;
@@ -76,7 +76,7 @@ contract OldAccount is BaseHook, Ownable {
     }
 
     function beforeModifyPosition(
-        address sender,
+        address,
         IPoolManager.PoolKey calldata,
         IPoolManager.ModifyPositionParams calldata
     )
@@ -84,14 +84,14 @@ contract OldAccount is BaseHook, Ownable {
         view
         override
         poolManagerOnly
-        onlyPermitOldAccounts(sender)
+        onlyPermitOldAccounts
         returns (bytes4)
     {
         return BaseHook.beforeModifyPosition.selector;
     }
 
     function beforeSwap(
-        address sender,
+        address,
         IPoolManager.PoolKey calldata,
         IPoolManager.SwapParams calldata
     )
@@ -99,7 +99,7 @@ contract OldAccount is BaseHook, Ownable {
         view
         override
         poolManagerOnly
-        onlyPermitOldAccounts(sender)
+        onlyPermitOldAccounts
         returns (bytes4)
     {
         return BaseHook.beforeSwap.selector;
