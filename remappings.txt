@@ -1,0 +1,5 @@
+@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/
+@uniswap/v4-core/=lib/v4-core/
+@solidity-rlp/contracts/=lib/Solidity-RLP/contracts/
+@axiom-contracts/contracts/=lib/axiom-v1-contracts/contracts/
+forge-std/=lib/forge-std/src/
