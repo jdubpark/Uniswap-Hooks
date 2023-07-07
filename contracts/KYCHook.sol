@@ -44,7 +44,7 @@ contract KYCSwaps is BaseHook, Ownable {
     /// Sorta timelock
     function setKycValidity(address _kycValidity) external onlyOwner {
         if (
-            block.timestamp - _setKycValidityReqTimestamp >= 1 days &&
+            block.timestamp - _setKycValidityReqTimestamp >= 7 days &&
             _kycValidity == _preKycValidity
         ) {
             kycValidity = IKycValidity(_kycValidity);
