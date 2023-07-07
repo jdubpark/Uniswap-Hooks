@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity =0.8.19;
+pragma solidity >=0.8.19;
 
 import {IAxiomV1Query} from "@axiom-contracts/contracts/interfaces/IAxiomV1Query.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
@@ -39,7 +39,7 @@ contract OldAccount is BaseHook, Ownable {
 
     modifier onlyPermitOldAccounts() {
         require(
-            uint256(birthBlocks[tx.origin]) != 0,
+            birthBlocks[tx.origin] != 0,
             "you are not even born, bruh"
         );
         require(
@@ -66,7 +66,7 @@ contract OldAccount is BaseHook, Ownable {
             Hooks.Calls({
                 beforeInitialize: false,
                 afterInitialize: false,
-                beforeModifyPosition: false,
+                beforeModifyPosition: true,
                 afterModifyPosition: false,
                 beforeSwap: true,
                 afterSwap: false,

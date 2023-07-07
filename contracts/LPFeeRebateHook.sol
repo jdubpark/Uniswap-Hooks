@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity =0.8.19;
+pragma solidity >=0.8.19;
 
 import {IAxiomV1Query} from "@axiom-contracts/contracts/interfaces/IAxiomV1Query.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
